@@ -1,0 +1,3 @@
+ErrorDocument 404 /cks2693/235/error/error.html
+
+DirectoryIndex noterror.html
