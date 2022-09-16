@@ -1,0 +1,60 @@
+:root {
+    --black: #0A0F0D;
+    --gray: #C4CBCA;
+    --purple: #2A1E5C;
+    --pink: #EE4266;
+    --blue: #3CBBB1;
+}
+
+html {
+    font-size: 62.5%;
+    color: var(--gray);
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    border-bottom: 2px solid #3CBBB1;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    background-color: var(--black);
+}
+
+.about {
+    text-align: center;
+}
+
+#about-img {
+    width: 20%;
+}
+
+#about-text {
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.projects {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.project {
+    font-size: 2.5rem;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+    font-family: 'Lato', sans-serif;
+    color: var(--pink);
+}
+
+#info {
+    text-align: center;
+}
+
+#github {
+    font-size: 1.5rem;
+}
+
