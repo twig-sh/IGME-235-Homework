@@ -1,0 +1,163 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+#head {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    height: 39.6vw;
+    width: 60vw;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+#head-img {
+    grid-row: 2 / 6;
+    grid-column: 1 / 10;
+    background-image: url(../media/woman-mountain.jpg);
+    background-size: cover;
+    z-index: -1
+}
+
+#logo {
+    grid-row: 1 / 2;
+    grid-column: 1;
+    background-color: #1591d1;
+    z-index: 2;
+}
+
+#head-overlay {
+    grid-row: 4 / 7;
+    grid-column: 2 / span 3;
+    background-color: rgba(217, 69, 93, .5);
+}
+
+#head-text {
+    grid-row: 5 / 7;
+    grid-column: 6 / span 4;
+    background-color: #1591d1;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    height: 53.4vw;
+    width: 60vw;
+    margin: auto;
+}
+
+.content-item {
+    border: 5px solid white;
+}
+
+.content1 {
+    grid-row: 1 / span 2;
+    grid-column: 1 / span 4;
+    background-color: lightblue;
+}
+
+.content2 {
+    grid-row: 1 / span 2;
+    grid-column: 5 / span 2;
+    background-color: #1591d1;
+}
+
+.content3 {
+    grid-row: 1 / span 2;
+    grid-column: 7 / span 3;
+    background-color: lightblue;
+}
+
+.content3 img {
+    width: 50%;
+    float: right;
+}
+
+.content4 {
+    grid-row: 3 / span 4;
+    grid-column: 1 / span 3;
+    background-color: #dd4b62;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.content4-img {
+    grid-row: 2 / 5;
+    background-image: url(../media/man-computer.jpg);
+}
+
+.content5 {
+    grid-row: 3 / span 4;
+    grid-column: 4 / span 2;
+    background-color: #3ab8f2;
+}
+
+.content6 {
+    grid-row: 3 / span 2;
+    grid-column: 6 / span 3;
+    background-color: #1591d1;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.content6 p {
+    margin: 5px;
+    color: white;
+    overflow: hidden;
+}
+
+.content7 {
+    grid-row: 5 / span 2;
+    grid-column: 6 / span 4;
+    background-color: #dd4b62;
+}
+
+.content8 {
+    grid-row: 7 / span 2;
+    grid-column: 1 / span 2;
+    background-color: lightblue;
+}
+
+.content9 {
+    grid-row: 6 / span 2;
+    grid-column: 3 / span 2;
+    background-color: #1591d1;
+}
+
+.content10 {
+    grid-row: 8;
+    grid-column: 3 / span 2;
+    background-color: #dd4b62;
+}
+
+.content11 {
+    grid-row: 7 / span 2;
+    grid-column: 5 / span 3;
+    background-color: #fde29b;
+}
+
+.content12 {
+    grid-row: 7 / span 2;
+    grid-column: 8 / span 2;
+    background-color: lightblue;
+}
+
+footer {
+    text-align: right;
+    width: 60vw;
+    margin: auto
+}
+
+#link {
+    width: 75%;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 0;
+}
