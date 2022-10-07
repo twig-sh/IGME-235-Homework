@@ -55,7 +55,11 @@
 .content1 {
     grid-row: 1 / span 2;
     grid-column: 1 / span 4;
-    background-color: lightblue;
+    background-color: #f5f5f5;
+}
+
+.content1 img {
+    width: 40%;
 }
 
 .content2 {
@@ -67,7 +71,7 @@
 .content3 {
     grid-row: 1 / span 2;
     grid-column: 7 / span 3;
-    background-color: lightblue;
+    background-color: #f5f5f5;
 }
 
 .content3 img {
@@ -86,6 +90,7 @@
 .content4-img {
     grid-row: 2 / 5;
     background-image: url(../media/man-computer.jpg);
+    background-size: cover;
 }
 
 .content5 {
@@ -116,10 +121,22 @@
     background-color: #dd4b62;
 }
 
+.content7 img {
+    float: left;
+    height: 80%;
+}
+
 .content8 {
     grid-row: 7 / span 2;
     grid-column: 1 / span 2;
-    background-color: lightblue;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content8 img {
+    width: 70%;
 }
 
 .content9 {
@@ -137,13 +154,14 @@
 .content11 {
     grid-row: 7 / span 2;
     grid-column: 5 / span 3;
-    background-color: #fde29b;
+    background-image: url(../media/woman-headphones.jpg);
+    background-size: cover;
 }
 
 .content12 {
     grid-row: 7 / span 2;
     grid-column: 8 / span 2;
-    background-color: lightblue;
+    background-color: #f5f5f5;
 }
 
 footer {
