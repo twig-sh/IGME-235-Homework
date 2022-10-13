@@ -1,0 +1,24 @@
+@media screen and (max-width: 850px) {
+    #head {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        height: 39.6vw;
+        width: 60vw;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+
+    #head-overlay {
+        font-size: 1.4rem;
+    }
+
+    #content {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        height: 53.3vw;;
+        width: 60vw;
+        margin: auto;
+    }
+}
