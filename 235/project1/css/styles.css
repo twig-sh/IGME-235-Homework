@@ -23,18 +23,23 @@
 
 #nav {
     grid-row: 1 / 2;
-    grid-column: 1;
+    grid-column: 1 / 10;
     background-color: #1591d1;
+    color: black;
     z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
     text-decoration: underline;
+    font-size: 2.5rem;
+    
 }
 
-#nav a {
-    color: black;
+#nav:hover {
+    background-color: #dd4b62;
+    color: white;
+    transition: 1s;
 }
 
 #head-overlay {
