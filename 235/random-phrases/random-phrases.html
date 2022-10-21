@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <section id="container">
+        <div id="head">
+            <h1>What is Hunter Saying?</h1>
+        </div>
+
+        <div id="quote-container">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis aliquid dolor illo! Libero ipsa debitis eum quas incidunt vero deserunt qui, porro fugiat itaque, assumenda natus rerum quidem doloremque exercitationem.</p>
+        </div>
+
+        <div id="foot">
+            <button id="randomize">What Now?</button>
+            <p>Made by Twig Sheherlis</p>
+        </div>
+    </section>
+
+    <script>
+        const quoteBlock = document.querySelector("#quote-container p")
+        const randomButton = document.querySelector("#randomize")
+
+        const quotes = 
+        ["It was a good sandwich.", 
+         "It's... hard, when you can't trust yourself. I spent my whole life believing I was doing something good for someone good... but it was a lie. And some part of me still wants to... believe in that lie, just like you wanna believe you're dumb, or, whatever. But it's not true. I promise. I wouldn't mess with you.", 
+         "I'll be home soon, Flapjack. Stay safe. I love you. Over and out.", 
+         "Okay, listen, I'm sorry about this whole cell thing, but did you really have to punch Steve, Skara?", 
+         "The... Emerald Entrails! You know, because... we're green, and there's... more to us... than you think."];
+
+        let randomQuote = () => {
+            return Math.floor(Math.random() * (5 - 0) + 0);
+        }
+
+        let displayQuote = () => {
+            quoteBlock.innerHTML = quotes[randomQuote()];
+        }
+        
+        displayQuote();
+
+        randomButton.addEventListener("click", displayQuote);
+    </script>
+</body>
+</html>
