@@ -254,6 +254,11 @@ function gameLoop() {
 
       c.move(dt);
     }
+    if (c.y <= c.radius || c.y >= sceneHeight - c.radius) {
+      c.reflectY();
+
+      c.move(dt);
+    }
   }
 
   // #4 - Move Bullets
