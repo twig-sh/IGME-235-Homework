@@ -11,6 +11,8 @@ let bugs = document.querySelector("#bugs");
 let bugsDropDown = document.querySelector("#bugs-list");
 let villagersDropDown = document.querySelector("#villagers-list");
 let favoritesDropDown = document.querySelector("#favorites-list");
+let clearButton = document.querySelector("#clear");
+let instructions = document.querySelector("#instructions");
 
 const prefix = "cks2693-";
 const critterKey = prefix + "critters";
@@ -34,6 +36,7 @@ if (storedVillagers) {
 const API_URL = "https://api.nookipedia.com/";
 const API_KEY = "ee03ae8c-8f89-495a-a9ed-d4e07fa9df9f";
 
+// grab data from api
 let getData = (url) => {
   let xhr = new XMLHttpRequest();
 
@@ -45,6 +48,7 @@ let getData = (url) => {
   xhr.send();
 };
 
+// take data from api and puts it on the page
 let dataLoaded = (e) => {
   // getting values from the api
   let xhr = e.target;
@@ -81,6 +85,7 @@ let dataLoaded = (e) => {
   }
 };
 
+// no data found (this should theoretically never be called)
 let dataError = (e) => {
   console.log("An error occured");
 };
@@ -109,6 +114,11 @@ let buttonPress = (e) => {
 
 // manipulates the DOM to display cards for the critters loaded
 let displayBugOrFish = (array) => {
+  if (clearButton != null) clearButton.remove();
+
+  instructions.innerHTML =
+    "Hover over cards to flip them or click to favorite!";
+
   array.forEach((result) => {
     container.insertAdjacentHTML(
       "beforeend",
@@ -133,6 +143,11 @@ let displayBugOrFish = (array) => {
 
 // manipulates the DOM to display cards for the villagers loaded
 let displayVillagers = (array) => {
+  if (clearButton != null) clearButton.remove();
+
+  instructions.innerHTML =
+    "Hover over cards to flip them or click to favorite!";
+
   array.forEach((result) => {
     container.insertAdjacentHTML(
       "beforeend",
@@ -218,6 +233,7 @@ let favoriteClick = (e) => {
   }
 };
 
+// updates the DOM variables to their current state
 let updateDOM = () => {
   cards = document.querySelectorAll(".result");
   cardFront = document.querySelectorAll(".front");
@@ -253,22 +269,62 @@ let filterSpecies = (string) => {
   );
 };
 
+// displays either favorite critter or villager array
 let loadFavorites = (value) => {
   if (value === "critters") {
-    displayBugOrFish(favoriteCrittersArray);
-    updateDOM();
+    if (favoriteCrittersArray.length === 0) {
+      instructions.innerHTML =
+        "Nothing currently favorited, click a button to load items!";
+      container.innerHTML = "";
+    } else {
+      displayBugOrFish(favoriteCrittersArray);
+      updateDOM();
 
-    // adjusting image size
-    cardImgs.forEach((e) => (e.style.height = "80%"));
+      // adjusting image size
+      cardImgs.forEach((e) => (e.style.height = "80%"));
+
+      container.insertAdjacentHTML(
+        "afterend",
+        `<button id='clear' value=${value}>Clear</button>`
+      );
+      clearButton = document.querySelector("#clear");
+      clearButton.onclick = clearFavorites;
+    }
   } else if (value === "villagers") {
-    displayVillagers(favoriteVillagersArray);
-    updateDOM();
+    if (favoriteVillagersArray.length === 0) {
+      instructions.innerHTML =
+        "Nothing currently favorited, click a button to load items!";
+      container.innerHTML = "";
+    } else {
+      displayVillagers(favoriteVillagersArray);
+      updateDOM();
 
-    // adjusting image size
-    cardImgs.forEach(
-      (e) => ((e.style.height = "70%"), (e.style.width = "30%"))
-    );
+      // adjusting image size
+      cardImgs.forEach(
+        (e) => ((e.style.height = "70%"), (e.style.width = "30%"))
+      );
+
+      container.insertAdjacentHTML(
+        "afterend",
+        `<button id='clear' value=${value}>Clear</button>`
+      );
+      clearButton = document.querySelector("#clear");
+      clearButton.onclick = clearFavorites;
+    }
   }
+};
+
+// clears the current favorites array
+let clearFavorites = (e) => {
+  if (e.target.value === "critters") {
+    favoriteCrittersArray = [];
+    localStorage.setItem(critterKey, JSON.stringify(favoriteCrittersArray));
+  } else if (e.target.value === "villagers") {
+    favoriteVillagersArray = [];
+    localStorage.setItem(villagerKey, JSON.stringify(favoriteVillagersArray));
+  }
+  loadFavorites(e.target.value);
+  clearButton.remove();
 };
 
 buttons.forEach((button) => {
