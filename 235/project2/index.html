@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,30 +8,90 @@
     <link rel="stylesheet" href="style/styles.css">
     <title>Project 2</title>
 </head>
+
 <body>
     <div id="buttons">
         <ul>
-            <li><button class="main-button" id="fish" value="fish">Fish</button>
-                <ul>
-                    <li><button class="sub-button" value="fish" data-location="Sea">Sea</button></li>
-                    <li><button class="sub-button" value="fish" data-location="River">River</button></li>
-                    <li><button class="sub-button" value="fish" data-location="Pond">Pond</button></li>
-                </ul>
+            <li>
+                <button class="main-button" id="fish" value="fish">Fish</button>
+
+                <select name="fish" id="fish-list">
+                    <option value="">All</option>
+                    <option value="Sea">Sea</option>
+                    <option value="River">River</option>
+                    <option value="Pond">Pond</option>
+                    <option value="Pier">Pier</option>
+                </select>
             </li>
-            <li><button class="main-button" id="bugs" value="bugs">Bugs</button>
-                <ul>
-                    <li><button class="sub-button" value="bugs" data-location="Flying">Flying</button></li>
-                    <li><button class="sub-button" value="bugs" data-location="Ground">Ground</button></li>
-                    <li><button class="sub-button" value="bugs" data-location="Trees">Trees</button></li>
-                </ul>
+            <li>
+                <button class="main-button" id="bugs" value="bugs">Bugs</button>
+
+                <select name="bugs" id="bugs-list">
+                    <option value="">All</option>
+                    <option value="flying">Flying</option>
+                    <option value="ground">Ground</option>
+                    <option value="trees">Trees</option>
+                    <option value="flowers">Flowers</option>
+                    <option value="on">On Something</option>
+                </select>
             </li>
-            <li><button class="main-button" id="fossils" value="fossils">Fossils</button></li>
-            <li><button class="main-button" id="villagers" value="villagers">Villagers</button></li>
-            <li><button class="main-button" id="favorites" value="favorites">Favorites</button></li>
+            <li>
+                <button class="main-button" id="villagers" value="villagers">Villagers</button>
+
+                <select name="villagers" id="villagers-list">
+                    <option value="">All</option>
+                    <option value="Alligator">Alligator</option>
+                    <option value="Anteater">Anteater</option>
+                    <option value="Bear">Bear</option>
+                    <option value="Bird">Bird</option>
+                    <option value="Bull">Bull</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Cow">Cow</option>
+                    <option value="Cub">Cub</option>
+                    <option value="Deer">Deer</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Duck">Duck</option>
+                    <option value="Eagle">Eagle</option>
+                    <option value="Elephant">Elephant</option>
+                    <option value="Frog">Frog</option>
+                    <option value="Goat">Goat</option>
+                    <option value="Gorilla">Gorilla</option>
+                    <option value="Hamster">Hamster</option>
+                    <option value="Hippo">Hippo</option>
+                    <option value="Horse">Horse</option>
+                    <option value="Kangaroo">Kangaroo</option>
+                    <option value="Koala">Koala</option>
+                    <option value="Lion">Lion</option>
+                    <option value="Monkey">Monkey</option>
+                    <option value="Mouse">Mouse</option>
+                    <option value="Octopus">Octopus</option>
+                    <option value="Ostrich">Ostrich</option>
+                    <option value="Penguin">Penguin</option>
+                    <option value="Pig">Pig</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Rhino">Rhino</option>
+                    <option value="Sheep">Sheep</option>
+                    <option value="Squirrel">Squirrel</option>
+                    <option value="Tiger">Tiger</option>
+                    <option value="Wolf">Wolf</option>
+                </select>
+            </li>
+
+
+            <li>
+                <button class="main-button" id="favorites" value="favorites">Favorites</button>
+
+                <select name="favorites" id="favorites-list">
+                    <option value="critters">Critters</option>
+                    <option value="villagers">Villagers</option>
+                </select>
+            </li>
         </ul>
     </div>
 
     <div class="container"></div>
     <script src="js/main.js"></script>
 </body>
+
 </html>
