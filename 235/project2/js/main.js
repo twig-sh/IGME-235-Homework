@@ -209,8 +209,6 @@ let filterVillagers = () => filterSpecies(villagersDropDown.value);
 let favoriteClick = (e) => {
   let newData = currentArray[parseInt(e.target.dataset.index)];
 
-  console.log(e.target);
-
   if (e.target.dataset.type === "villager") {
     if (favoriteVillagersArray.includes(newData)) {
       favoriteVillagersArray.splice(favoriteVillagersArray.indexOf(newData), 1);
@@ -219,7 +217,6 @@ let favoriteClick = (e) => {
       favoriteVillagersArray.push(newData);
       localStorage.setItem(villagerKey, JSON.stringify(favoriteVillagersArray));
     }
-    console.log(favoriteVillagersArray);
   } else if (e.target.dataset.type === "critter") {
     if (favoriteCrittersArray.includes(newData)) {
       favoriteCrittersArray.splice(favoriteCrittersArray.indexOf(newData), 1);
@@ -228,8 +225,6 @@ let favoriteClick = (e) => {
       favoriteCrittersArray.push(newData);
       localStorage.setItem(critterKey, JSON.stringify(favoriteCrittersArray));
     }
-
-    console.log(favoriteCrittersArray);
   }
 };
 
