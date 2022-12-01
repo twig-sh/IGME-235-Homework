@@ -9,7 +9,8 @@ let favoritesArray = [];
 
 //const storedName = localStorage.getItem(nameKey);
 
-const API_URL = "https://acnhapi.com/v1/"
+const API_URL = "https://api.nookipedia.com/"
+const API_KEY = "ee03ae8c-8f89-495a-a9ed-d4e07fa9df9f"
 
 
         let getData = (url) => {
@@ -37,7 +38,13 @@ const API_URL = "https://acnhapi.com/v1/"
 
         let buttonPress = (e) => {
             let url = API_URL;
-            url += e.target.value;
+            if (e.target.value === "villagers") {
+                url += e.target.value + "?api_key=" + API_KEY;
+            }
+            else {
+                url += "nh/" + e.target.value + "?api_key=" + API_KEY;
+            }
+            
 
             console.log(e.target);
 
@@ -72,9 +79,9 @@ const API_URL = "https://acnhapi.com/v1/"
                         </div>
                         <div class='back'>
                             <p>${result.name['name-USen']}</p>
-                            <p>Months Available: ${result.availability['month-northern']}</p>
-                            <p>Location: ${result.availability.location}</p>
-                            <p>Rarity: ${result.availability.rarity}</p>
+                            <p>Months Available: </p>
+                            <p>Location: </p>
+                            <p>Rarity: </p>
                             <p>Price: ${result.price}</p>
                         </div>
                         </div>
