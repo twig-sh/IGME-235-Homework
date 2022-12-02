@@ -1,4 +1,7 @@
+body {
+    text-align: center;
+}
+
 canvas {
-    margin-left: 8vw;
     margin-top: 20vh;
 }
