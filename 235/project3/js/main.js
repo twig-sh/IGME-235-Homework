@@ -6,7 +6,7 @@ const app = new PIXI.Application({
 document.body.appendChild(app.view);
 
 let score = 0;
-let time = 10;
+let time = 10.00;
 let paused = false;
 
 let horiSpeed = 0;
@@ -188,13 +188,14 @@ let gameLoop = () => {
     collect();
 
     if (time > 0) {
-    time -= .01;
+    time -= .007;
     }
     else {
         paused = true;
     }
 
     timer.scale.x = time / 10;
+    console.log(time);
 }
 app.ticker.add(gameLoop);
 
