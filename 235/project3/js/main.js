@@ -115,7 +115,8 @@ let physics = () => {
     // interaction with platforms
     else if (rectsIntersect(playerBox, platform)) {
         // having the player stop vertical motion on the top of a platform
-        if (playerBox.y < platform.y - height + 10 && playerBox.y >= platform.y - height) {
+        if (playerBox.y < platform.y - height + 10 && 
+            playerBox.y >= platform.y - height) {
             playerBox.y = platform.y - height
             vertSpeed = 0;
         }
