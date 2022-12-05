@@ -4,3 +4,8 @@ function rectsIntersect(a,b){
     let bb = b.getBounds();
     return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
 }
+
+// gets a random value
+function getRandom(min, max) {
+    return Math.random() * (max - min) + min;
+}

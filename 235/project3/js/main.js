@@ -12,15 +12,16 @@ let paused = false;
 let horiSpeed = 0;
 let vertSpeed = 0;
 
-const vertSpeedIncrement = 5;
-const horiSpeedIncrement = 3;
-const gravity = .1;
+const vertSpeedIncrement = 500;
+const horiSpeedIncrement = 300;
+const gravity = 9.81;
 
 const width = app.view.width;
 const height = app.view.height;
 
 let keysArray = {};
 let coins = [];
+let platforms = [];
 
 let textStyle = new PIXI.TextStyle({
     fill: 0xffffff,
@@ -39,6 +40,7 @@ playerBox.endFill();
 app.stage.addChild(playerBox);
 
 let platform = new Platform(100, 50, 0xa0a0a0, 300, 490);
+platforms.push(platform);
 
 app.stage.addChild(platform);
 
@@ -160,17 +162,42 @@ let collect = () => {
     scoreText.text = `Score:  ${score}`;
 }
 
+let spawnCoins = () => {
+    for (let i = 0; i < 5; i++) {
+        let coin = new Coin (5, 0xFFBF00, getRandom(10, 590), getRandom(10, 590));
+        coins.push(coin);
+        app.stage.addChild(coin);
+    }
+
+    for (let coin in coins) {
+        for (let platform of platforms) {
+            while (rectsIntersect(coin, platform)) {
+                coin.x = getRandom(10, 590);
+                coin.y = getRandom(10, 590);
+            }
+        }
+    }
+}
+
 // the game's main functionality
 let gameLoop = () => {
+    // stop the game if the player runs out of time
     if(paused) return;
 
-    input();
-    
-    playerBox.y += vertSpeed;
+    let dt = 1 / app.ticker.FPS;
+    if (dt > 1 / 12) dt = 1 / 12;
 
+    // read player input and calc speed
+    input();
+
+    // apply vertical speed from input
+    playerBox.y += vertSpeed * dt;
+
+    // apply any collisions with platforms
     physics();
 
-    playerBox.x += horiSpeed;
+    // apply horizontal speed from input
+    playerBox.x += horiSpeed * dt;
 
     // reset horizontal speed if keys aren't being pressed
     if(!document.keydown) {
@@ -185,17 +212,23 @@ let gameLoop = () => {
         playerBox.position.x = app.view.width / 2 + playerBox.width;
     }
 
+    // check for collisions with coins and collect them if found
     collect();
 
+    // ticking the game timer down to zero
     if (time > 0) {
-    time -= .007;
+    time -= 1 * dt;
     }
     else {
         paused = true;
     }
 
+    // scaling the timer so the player can see roughly how much time they have left
     timer.scale.x = time / 10;
-    console.log(time);
+
+    if (coins.length === 0) {
+        spawnCoins();
+    }
 }
 app.ticker.add(gameLoop);
 
