@@ -16,8 +16,6 @@ app.loader.add(["images/spaceship.png", "images/explosions.png"]);
 app.loader.onProgress.add((e) => {
   console.log(`progress=${e.progress}`);
 });
-app.loader.onComplete.add(setup);
-app.loader.load();
 
 // aliases
 let stage;
