@@ -19,6 +19,8 @@ if (savedScore) {
   highscore = savedScore;
 }
 
+app.loader.add(["imgs/PlayerBox.png", "imgs/coin.png"]);
+
 let score;
 let time;
 let coinsToSpawn;
@@ -42,6 +44,7 @@ let gameScene;
 let gameOverScoreLabel;
 let gameOverScene;
 let stage;
+let playerBox;
 
 let jumpSound;
 let coinSound;
@@ -55,27 +58,13 @@ let scoreStyle = new PIXI.TextStyle({
   fontFamily: "Press Start 2P",
 });
 
-let playerBox = new PIXI.Graphics();
-
-playerBox.beginFill(0x3498db); // Blue color
-playerBox.drawRect(300, 550, 50, 50);
-playerBox.endFill();
-
-gameScene.addChild(playerBox);
-
-for (let platform of platforms) {
-  gameScene.addChild(platform);
-}
-
 let scoreText = new PIXI.Text();
 scoreText.style = scoreStyle;
 scoreText.x = 5;
 scoreText.y = 20;
-gameScene.addChild(scoreText);
+
 
 let timer = new Timer(500, 10, 0xffffff, 5, 5);
-
-gameScene.addChild(timer);
 
 highscoreDisplay.innerHTML = `HIGH SCORE: ${highscore}`;
 
@@ -92,6 +81,17 @@ function setup() {
   gameOverScene = new PIXI.Container();
   gameOverScene.visible = false;
   stage.addChild(gameOverScene);
+
+  playerBox = new Player();
+  gameScene.addChild(playerBox);
+
+  for (let platform of platforms) {
+    gameScene.addChild(platform);
+  }
+
+  gameScene.addChild(timer);
+
+  gameScene.addChild(scoreText);
 
   jumpSound = new Howl({
     src: ["sounds/jump.wav"],
@@ -113,8 +113,8 @@ function startGame() {
   paused = false;
   score = 0;
   time = 10.0;
-  playerBox.x = -25;
-  playerBox.y = 50;
+  playerBox.x = 275;
+  playerBox.y = 550;
   coinsToSpawn = 20;
   spawnCoins();
   cleanUpCoins();
@@ -240,10 +240,10 @@ let input = (dt) => {
 // handles interactions with the ground
 let physics = (dt) => {
   // player on ground
-  if (playerBox.position.y >= 0) {
+  if (playerBox.position.y >= 550) {
     // Don't move down if the player is at the bottom of the stage
     vertSpeed = 0;
-    playerBox.position.y = 0;
+    playerBox.position.y = 550;
   }
   // player in air
   else {
@@ -256,34 +256,34 @@ let physics = (dt) => {
     if (rectsIntersect(playerBox, platform)) {
       // having the player stop vertical motion on the top of a platform
       if (
-        playerBox.y < platform.y - height + 10 &&
-        playerBox.y >= platform.y - height
+        playerBox.y + 50 < platform.y + 10 &&
+        playerBox.y + 50 >= platform.y
       ) {
-        playerBox.y = platform.y - height;
+        playerBox.y = platform.y - platform.height;
         vertSpeed = 0;
       }
       // having the player bonk on the bottom of the platform
       else if (
-        playerBox.y <= platform.y + platform.height - height &&
-        playerBox.y >= platform.y + platform.height - height - 10
+        playerBox.y <= platform.y + 10 &&
+        playerBox.y >= platform.y
       ) {
-        playerBox.y = platform.y + platform.height + playerBox.height - height;
+        playerBox.y = platform.y + playerBox.height;
         vertSpeed = 0;
       }
       // having the player be unable to enter the left side of the platform
       else if (
-        playerBox.x >= platform.x - width / 2 - playerBox.width &&
-        playerBox.x < platform.x - width / 2
+        playerBox.x >= platform.x - playerBox.width &&
+        playerBox.x < platform.x
       ) {
-        playerBox.x = platform.x - app.view.width / 2 - playerBox.width;
+        playerBox.x = platform.x - playerBox.width;
         horiSpeed = 0;
       }
       // having the player be unable to enter the right side of the platform
       else if (
-        playerBox.x <= platform.x + platform.width - width / 2 &&
-        playerBox.x > platform.x + platform.width - width / 2 - playerBox.width
+        playerBox.x <= platform.x + platform.width&&
+        playerBox.x > platform.x + platform.width - playerBox.width
       ) {
-        playerBox.x = platform.x + platform.width - app.view.width / 2;
+        playerBox.x = platform.x + platform.width;
         horiSpeed = 0;
       }
     }
@@ -308,7 +308,7 @@ let collect = () => {
 // handles the spawning of coins when the screen is clear
 let spawnCoins = () => {
   for (let i = 0; i < coinsToSpawn; i++) {
-    let coin = new Coin(5, 0xffbf00, getRandom(10, 590), getRandom(30, 590));
+    let coin = new Coin(getRandom(10, 590), getRandom(30, 590));
     coins.push(coin);
     gameScene.addChild(coin);
   }
@@ -360,10 +360,10 @@ function gameLoop() {
   }
 
   // screen wrapping on right and left
-  if (playerBox.position.x > app.view.width / 2 + playerBox.width) {
-    playerBox.position.x = -app.view.width / 2 - playerBox.width;
-  } else if (playerBox.position.x < -app.view.width / 2 - playerBox.width) {
-    playerBox.position.x = app.view.width / 2 + playerBox.width;
+  if (playerBox.position.x > app.view.width + playerBox.width) {
+    playerBox.position.x = 0 - playerBox.width;
+  } else if (playerBox.position.x < 0 - playerBox.width) {
+    playerBox.position.x = app.view.width + playerBox.width;
   }
 
   // check for collisions with coins and collect them if found

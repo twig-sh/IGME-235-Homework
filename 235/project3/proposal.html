@@ -1,62 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Proposal</title>
     <style>
-        *{
+        * {
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
         }
 
         img {
             width: 45%;
         }
+
+        footer {
+            bottom: 0;
+            width: 99vw;
+        }
+
+        #foot {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #concept {
+            margin: 5px;
+        }
+
+        .nav {
+            background-color: #71A9F7;
+            border: 2px solid #C6D8FF;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+            height: 3vh;
+            width: 25vw;
+            font-family: 'Press Start 2P', cursive;
+            text-decoration: none;
+            color: black;
+            padding: 2vh;
+        }
+
+        .nav:visited {
+            color: black;
+        }
     </style>
 </head>
+
 <body>
-    <h1>Bonus Level</h1>
+    <section id="concept">
+        <h1>Bonus Level</h1>
 
-    <h2>I. High Concept</h2>
-    <p>It's a coin collecting bonus game you would play on an arcade cabinet! Platform to collect all the coins on screen to increase your time remaining and reach for a high score!</p>
+        <h2>I. High Concept</h2>
+        <p>It's a coin collecting bonus game you would play on an arcade cabinet! Platform to collect all the coins on
+            screen to increase your time remaining and reach for a high score!</p>
 
-    <h2>II. Genre</h2>
-    <p>Platformer, Arcade</p>
+        <h2>II. Genre</h2>
+        <p>Platformer, Arcade</p>
 
-    <h2>III. Platform</h2>
-    <p>Desktop only</p>
+        <h2>III. Platform</h2>
+        <p>Desktop only</p>
 
-    <h2>IV. Story</h2>
-    <p>This game is a coin collection game that pushes the player to reach for the highest score possible. The player is acting under constant time pressure to clear the screen and increase the timer so they can get a higher score. This should add a feeling of pressure as the player is trying to beat the clock.</p>
+        <h2>IV. Story</h2>
+        <p>This game is a coin collection game that pushes the player to reach for the highest score possible. The
+            player is acting under constant time pressure to clear the screen and increase the timer so they can get a
+            higher score. This should add a feeling of pressure as the player is trying to beat the clock.</p>
 
-    <h2>V. Aesthetics</h2>
-    <p>Graphics style - Pixel Graphics</p>
-    <p>Sound - 8-bit</p>
-    <p>Sounds - Coin collected, jump</p>
+        <h2>V. Aesthetics</h2>
+        <p>Graphics style - Pixel Graphics</p>
+        <p>Sound - 8-bit</p>
+        <p>Sounds - Coin collected, jump</p>
 
-    <h2>VI. Gameplay</h2>
-    <h3>Mechanics</h3>
-    <p>Moving left and right and jumping</p>
+        <h2>VI. Gameplay</h2>
+        <h3>Mechanics</h3>
+        <p>Moving left and right and jumping</p>
 
-    <h3>Control</h3>
-    <p>Keyboard (WAD, Left Right Up, Space)</p>
+        <h3>Control</h3>
+        <p>Keyboard (WAD, Left Right Up, Space)</p>
 
-    <h3>Onboarding</h3>
-    <p>There will be a seperate controls screen on the main menu</p>
+        <h3>Onboarding</h3>
+        <p>There will be a seperate controls screen on the main menu</p>
 
-    <h3>Player learning</h3>
-    <p>The player will need to keep collecting coins to gain score and add to the timer, once the timer runs out the game is over and score is totaled.</p>
+        <h3>Player learning</h3>
+        <p>The player will need to keep collecting coins to gain score and add to the timer, once the timer runs out the
+            game is over and score is totaled.</p>
 
-    <h2>VII. Screenshots</h2>
-    <img src="imgs/Bonus_Level_Title_Screen.png" alt="">
-    <img src="imgs/Bonus_Level_Game_Screen.png" alt="">
+        <h2>VII. Screenshots</h2>
+        <img src="imgs/Bonus_Level_Title_Screen.png" alt="">
+        <img src="imgs/Bonus_Level_Game_Screen.png" alt="">
 
 
-    <h2>VIII. Other</h2>
-    <p>Bonus Level should be able to run entirely on PIXI.js</p>
+        <h2>VIII. Other</h2>
+        <p>Bonus Level should be able to run entirely on PIXI.js</p>
 
-    <h2>IX. About the developer</h2>
-    <p>Bonus Level is made by Twig Sheherlis, a second year game design student with experience in programming, Maya, Photoshop, Pixel art, and various js frameworks.</p>
+        <h2>IX. About the developer</h2>
+        <p>Bonus Level is made by Twig Sheherlis, a second year game design student with experience in programming,
+            Maya, Photoshop, Pixel art, and various js frameworks.</p>
+
+        <h2>X. Documentation</h2>
+        <h3>Development</h3>
+        <p>Bonus Level is a game I came up with on a whim thinking a platformer would be an easy take on this project. It, in fact, was not. As soon as I realized I would need to hand make the physics and platform collisions, I knew I was in for an interesting experience. Those were my two first challenges and honestly the biggest ones of the entire project. I still wanted to stick with this idea, and so I used what PIXI offered to me in order to create an experience reminiscent of the arcade games I played when I was younger. My general process went in the order of player input, to jump physics, to collisions, with everything else being scattered after. Making a platformer is deceptively complex, but I put everything together to create an experience I feel like puts together what we learned in this class. The game functions well (with some jank in the platforms but they were hand-coded by a college student on little sleep), and creates an experience largely different than that of circle blast. Bonus Level is a game I am very proud of and I hope you enjoy.
+        </p>
+        <h3>Sources</h3>
+        <ul>
+            <li><a href="https://fonts.google.com/specimen/Press+Start+2P">Press Start 2P</a> - Google Fonts</li>
+            <li><a href="https://mixkit.co/free-sound-effects/coin/">Jump Sound</a> - Mixkit</li>
+            <li><a href="https://mixkit.co/free-sound-effects/coin/">Coin Sound</a> - Mixkit</li>
+        </ul>
+
+
+    </section>
+
+    <footer>
+        <section id="foot">
+            <a href="proposal.html" class="nav">Proposal</a>
+            <a href="index.html" class="nav">Game</a>
+        </section>
+    </footer>
 </body>
+
 </html>
