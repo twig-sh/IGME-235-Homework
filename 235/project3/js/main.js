@@ -27,9 +27,9 @@ let paused = true;
 let horiSpeed = 0;
 let vertSpeed = 0;
 
-const vertSpeedIncrement = 500;
-const horiSpeedIncrement = 300;
-const gravity = 9.81;
+const vertSpeedIncrement = 5;
+const horiSpeedIncrement = 350;
+const gravity = .1;
 
 const width = app.view.width;
 const height = app.view.height;
@@ -42,6 +42,9 @@ let gameScene;
 let gameOverScoreLabel;
 let gameOverScene;
 let stage;
+
+let jumpSound;
+let coinSound;
 
 app.loader.onComplete.add(setup);
 app.loader.load();
@@ -89,6 +92,14 @@ function setup() {
   gameOverScene = new PIXI.Container();
   gameOverScene.visible = false;
   stage.addChild(gameOverScene);
+
+  jumpSound = new Howl({
+    src: ["sounds/jump.wav"],
+  });
+
+  coinSound = new Howl({
+    src: ["sounds/coin.wav"], // sounds are from mixkit
+  });
 
   createLabelsAndButtons();
 
@@ -200,13 +211,14 @@ let onKeyUp = (e) => {
 };
 
 // handles the player's keyboard inputs and their actions
-let input = () => {
+let input = (dt) => {
   // W Key is 87
   // Up arrow is 38
   if (keysArray["87"] || keysArray["38"]) {
     // If the W key or the Up arrow is pressed while the player isn't moving vertically, move the player up.
     if (vertSpeed === 0) {
       vertSpeed = -vertSpeedIncrement;
+      jumpSound.play();
     }
   }
 
@@ -214,19 +226,19 @@ let input = () => {
   // Left arrow is 37
   if (keysArray["65"] || keysArray["37"]) {
     // If the A key or the Left arrow is pressed, move the player to the left.
-    horiSpeed = -horiSpeedIncrement;
+    horiSpeed = -horiSpeedIncrement * dt;
   }
 
   // D Key is 68
   // Right arrow is 39
   if (keysArray["68"] || keysArray["39"]) {
     // If the D key or the Right arrow is pressed, move the player to the right.
-    horiSpeed = horiSpeedIncrement;
+    horiSpeed = horiSpeedIncrement * dt;
   }
 };
 
 // handles interactions with the ground
-let physics = () => {
+let physics = (dt) => {
   // player on ground
   if (playerBox.position.y >= 0) {
     // Don't move down if the player is at the bottom of the stage
@@ -286,6 +298,7 @@ let collect = () => {
       time += 0.5;
       gameScene.removeChild(coin);
       coin.isCollected = true;
+      coinSound.play();
     }
   }
   coins = coins.filter((coin) => !coin.isCollected);
@@ -330,16 +343,16 @@ function gameLoop() {
   if (dt > 1 / 12) dt = 1 / 12;
 
   // read player input and calc speed
-  input();
+  input(dt);
 
   // apply vertical speed from input
-  playerBox.y += vertSpeed * dt;
+  playerBox.y += vertSpeed;
 
   // apply any collisions with platforms
-  physics();
+  physics(dt);
 
   // apply horizontal speed from input
-  playerBox.x += horiSpeed * dt;
+  playerBox.x += horiSpeed;
 
   // reset horizontal speed if keys aren't being pressed
   if (!document.keydown) {
@@ -383,7 +396,6 @@ function gameLoop() {
   } else {
     updateTimer(0xffffff);
   }
-  console.log(time);
 }
 
 document.addEventListener("keydown", onKeyDown);

@@ -1,7 +1,43 @@
 body {
     text-align: center;
+    background-color: rgb(23, 23, 23);
+    margin: 0;
+}
+
+p {
+    color: white;
+    font-family:'Press Start 2P', cursive;
 }
 
 canvas {
     margin-top: 5vh;
+    border: solid 5px #71A9F7;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+}
+
+.nav {
+    background-color: #71A9F7;
+    border: 2px solid #C6D8FF;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    height: 3vh;
+    width: 25vw;
+    font-family:'Press Start 2P', cursive;
+    text-decoration: none;
+    color: black;
+    padding: 2vh;
+}
+
+.nav:visited {
+    color: black;
 }
