@@ -90,13 +90,12 @@ let dataError = (e) => {
   console.log("An error occured");
 };
 
-        let buttonPress = (e) => {
-            let url = API_URL;
-            url += e.target.value;
+let buttonPress = (e) => {
+  let url = API_URL;
 
-            console.log(e.target);
+  console.log(e.target);
 
-            container.innerHTML = "";
+  container.innerHTML = "";
 
   // clicking a critter button sets the endpoint to that critter...
   if (e.target.value === "fish" || e.target.value === "bugs") {
@@ -131,11 +130,11 @@ let displayBugOrFish = (array) => {
                             <p class='name' data-type='critter'>${result.name}</p>
                         </div>
                         <div class='back'>
-                            <p>${result.name['name-USen']}</p>
-                            <p>Months Available: ${result.availability['month-northern']}</p>
-                            <p>Location: ${result.availability.location}</p>
-                            <p>Rarity: ${result.availability.rarity}</p>
-                            <p>Price: ${result.price}</p>
+                            <p>${result.name}</p>
+                            <p>Months Available: ${result.north.months}</p>
+                            <p>Location: ${result.location}</p>
+                            <p>Rarity: ${result.rarity}</p>
+                            <p>Price: ${result.sell_nook}</p>
                         </div>
                         </div>
                     </div>`
